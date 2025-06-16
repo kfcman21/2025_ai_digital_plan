@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>서울특별시교육청 2025 AI·디지털 기반 교육 기본계획: 초등학교 교사를 위한 연수</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fonts-archive/Pretendard/subsets/Pretendard-dynamic-subset.css" type="text/css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root {
+            /* Academic Navy 테마 */
+            --primary-color: #303f9f;
+            --background-color: #f5f5f5;
+            --text-color: #1a237e;
+        }
+
+        body {
+            font-family: "Pretendard", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans KR", "Malgun Gothic", sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 900px;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        section {
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            margin-bottom: 30px;
+            padding: 40px;
+            display: grid;
+            gap: 30px;
+            align-items: center;
+            opacity: 0; /* 초기 상태를 투명하게 설정 */
+            transform: translateY(20px); /* 약간 아래로 이동 */
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out; /* 부드러운 애니메이션 적용 */
+        }
+
+        section.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        section:nth-child(odd) {
+            grid-template-columns: 2fr 3fr; /* 시각 요소가 왼쪽에, 텍스트가 오른쪽에 */
+        }
+
+        section:nth-child(even) {
+            grid-template-columns: 3fr 2fr; /* 텍스트가 왼쪽에, 시각 요소가 오른쪽에 */
+        }
+
+        h2 {
+            color: var(--primary-color);
+            font-size: 2.2em;
+            margin-bottom: 25px;
+            text-align: center;
+            font-weight: 700;
+            grid-column: 1 / -1; /* 제목은 전체 너비를 차지 */
+        }
+
+        .visual-element {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 180px;
+            background-color: var(--primary-color);
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            color: #ffffff;
+            font-size: 4em;
+            text-align: center;
+            padding: 20px;
+            box-sizing: border-box;
+            word-break: keep-all;
+        }
+
+        .visual-element.text-emphasis {
+            font-size: 1.8em;
+            font-weight: bold;
+            line-height: 1.4;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .learning-points ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .learning-points li {
+            background-color: #e8eaf6;
+            padding: 15px 20px;
+            border-radius: 8px;
+            margin-bottom: 12px;
+            font-size: 1.1em;
+            color: #3f51b5;
+            display: flex;
+            align-items: flex-start;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+            font-weight: 500;
+        }
+
+        .learning-points li:last-child {
+            margin-bottom: 0;
+        }
+
+        .learning-points li::before {
+            content: "✨";
+            margin-right: 10px;
+            font-size: 1.2em;
+            line-height: 1;
+        }
+
+        @media (max-width: 768px) {
+            section {
+                grid-template-columns: 1fr !important; /* 모바일에서는 단일 컬럼으로 변경 */
+            }
+            .visual-element {
+                font-size: 3em;
+            }
+            h2 {
+                font-size: 1.8em;
+            }
+            .learning-points li {
+                font-size: 1em;
+            }
+        }
+        .data-viz-container {
+            width: 100%;
+            height: 100%; /* 부모 요소에 맞게 높이 조절 */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: #ffffff; /* 텍스트 색상 흰색 */
+            position: relative;
+        }
+
+        .chart-bar-container {
+            width: 80%;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .chart-bar {
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.3);
+            border-radius: 5px;
+            height: 25px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .chart-fill {
+            height: 100%;
+            background-color: #ffeb3b; /* 강조 색상 */
+            border-radius: 5px;
+            width: 0%; /* 초기 너비 */
+            transition: width 1.5s ease-out; /* 애니메이션 */
+        }
+
+        .bar-label {
+            position: absolute;
+            top: 50%;
+            left: 10px;
+            transform: translateY(-50%);
+            color: var(--primary-color);
+            font-weight: bold;
+            font-size: 0.9em;
+            z-index: 1; /* 텍스트가 바 위에 오도록 */
+        }
+
+        .bar-value {
+            position: absolute;
+            top: 50%;
+            right: 10px;
+            transform: translateY(-50%);
+            color: var(--primary-color);
+            font-weight: bold;
+            font-size: 0.9em;
+            z-index: 1; /* 텍스트가 바 위에 오도록 */
+        }
+        .progress-indicator {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background: conic-gradient(#ffeb3b 0% 0%, rgba(255, 255, 255, 0.3) 0% 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: var(--primary-color);
+            font-size: 2em;
+            font-weight: bold;
+            position: relative;
+            margin: 0 auto;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: background 1.5s ease-out;
+        }
+
+        .progress-indicator::before {
+            content: '';
+            position: absolute;
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background-color: #ffffff;
+        }
+
+        .progress-value {
+            position: relative;
+            z-index: 1;
+        }
+
+        .chart-title {
+            font-size: 1.2em;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #ffffff;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <section id="section1">
+            <h2><i class="fas fa-bullseye"></i> 추진 배경 및 목표</h2>
+            <div class="visual-element">
+                <i class="fas fa-chart-line fa-4x"></i>
+            </div>
+            <div class="learning-points">
+                <ul>
+                    <li><strong>디지털 대전환 시대</strong>, 학생들의 언어·수리·디지털 기초소양 및 주도적 학습 역량 함양이 중요해요.</li>
+                    <li><strong>AI 윤리·디지털 시민성 교육</strong>을 통해 책임감 있는 기술 사용 능력을 키워줍니다.</li>
+                    <li><strong>디지털 격차 해소</strong>를 통해 모두에게 맞춤형 교육 기회를 제공하는 것이 목표입니다.</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="section2">
+            <h2><i class="fas fa-users-slash"></i> 디지털 격차 해소를 위한 노력</h2>
+            <div class="learning-points">
+                <ul>
+                    <li>2023년 실태조사 결과, <strong>고령층의 디지털정보화 수준이 가장 낮게</strong> 나타났습니다.</li>
+                    <li>코로나19 팬데믹으로 <strong>원격수업 확대가 교육 격차를 심화</strong>시켰다는 인식이 높아요.</li>
+                    <li><strong>1학생 1스마트기기 '디벗' 보급</strong>과 **디지털 튜터** 운영으로 학습 참여를 촉진하고 있습니다.</li>
+                </ul>
+            </div>
+            <div class="visual-element data-viz-container">
+                <div class="chart-title">디지털정보화 수준 비교 (2023)</div>
+                <div class="chart-bar-container">
+                    <div class="chart-bar">
+                        <div class="bar-label">저소득층</div>
+                        <div class="chart-fill" data-width="96.1%"></div>
+                        <div class="bar-value">96.1%</div>
+                    </div>
+                    <div class="chart-bar">
+                        <div class="bar-label">평균</div>
+                        <div class="chart-fill" data-width="76.9%"></div>
+                        <div class="bar-value">76.9%</div>
+                    </div>
+                    <div class="chart-bar">
+                        <div class="bar-label">고령층</div>
+                        <div class="chart-fill" data-width="70.7%"></div>
+                        <div class="bar-value">70.7%</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="section3">
+            <h2><i class="fas fa-chalkboard-teacher"></i> 초등학교 교사에게 요구되는 AI·디지털 역량</h2>
+            <div class="visual-element">
+                <i class="fas fa-robot fa-4x"></i>
+            </div>
+            <div class="learning-points">
+                <ul>
+                    <li>데이터 기반으로 수업과 평가를 설계하고 <strong>맞춤형 학습</strong>에 활용할 수 있어야 합니다.</li>
+                    <li>디지털 기술을 활용하여 <strong>학생 성장 중심 평가</strong>에 기반한 수업을 계획합니다.</li>
+                    <li>기술 변화에 발맞춰 <strong>학생과 함께 배우고 도전하는 학습자</strong>로서의 태도가 중요합니다.</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="section4">
+            <h2><i class="fas fa-graduation-cap"></i> 2025년 초등 교원 대상 주요 연수 프로그램</h2>
+            <div class="learning-points">
+                <ul>
+                    <li>AI·디지털 교수학습 역량강화 연수는 <strong>기본부터 전문가 단계까지 300여 개 과정</strong>이 개설됩니다.</li>
+                    <li>대면, 원격, 혼합, <strong>'학교로 찾아가는 연수'</strong> 등 다양한 방식으로 제공됩니다.</li>
+                    <li><strong>AI 윤리·디지털 시민성 교육</strong>을 위한 전문 연수도 상시 운영됩니다.</li>
+                </ul>
+            </div>
+            <div class="visual-element">
+                <div class="progress-indicator" data-progress="75">
+                    <span class="progress-value">75%</span>
+                </div>
+            </div>
+        </section>
+
+        <section id="section5">
+            <h2><i class="fas fa-laptop-code"></i> AIDT 및 디지털교과서 활용 역량 강화</h2>
+            <div class="visual-element">
+                <i class="fas fa-book-open fa-4x"></i>
+            </div>
+            <div class="learning-points">
+                <ul>
+                    <li><strong>AIDT(AI 기반 교수학습 도구)</strong>는 초등학교 3~4학년 수학, 영어, 정보 교과에 활용됩니다.</li>
+                    <li>AIDT는 학생별 <strong>학습 수준과 속도 진단 및 맞춤형 학습</strong>을 제공합니다.</li>
+                    <li>초등학교 5~6학년 사회, 과학, 영어 교과에 <strong>디지털교과서</strong>가 활용됩니다.</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="section6">
+            <h2><i class="fas fa-network-wired"></i> 디지털 기반 협력적 교육환경 조성</h2>
+            <div class="learning-points">
+                <ul>
+                    <li>2025학년도 1학기 초, 초등학교 3·4학년에 <strong>'디벗' 스마트기기가 보급</strong>될 예정입니다.</li>
+                    <li><strong>MDM(모바일 단말기 원격 통제 시스템)</strong>을 통해 안전하고 교육 목적으로만 기기를 활용합니다.</li>
+                    <li><strong>디지털 튜터 운영</strong> 및 네트워크 안정화를 통해 교사의 업무 부담을 경감합니다.</li>
+                </ul>
+            </div>
+            <div class="visual-element text-emphasis">
+                학교 소유<br>디벗 보급<br>교원 업무 경감
+            </div>
+        </section>
+
+        <section id="section7">
+            <h2><i class="fas fa-hands-helping"></i> 초등 교사를 위한 기타 지원 프로그램</h2>
+            <div class="visual-element">
+                <i class="fas fa-cubes fa-4x"></i>
+            </div>
+            <div class="learning-points">
+                <ul>
+                    <li><strong>디지털 새싹 운영 지원</strong>으로 SW·AI 교육 프로그램 체험 기회를 제공합니다.</li>
+                    <li><strong>디지털 문제해결 센터</strong>에서 스마트 기기 및 AI·SW 교육 교구를 대여할 수 있습니다.</li>
+                    <li><strong>AI·정보교육 연구회 운영</strong>을 통해 교사들의 공동 연구 및 자료 공유를 촉진합니다.</li>
+                </ul>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const sections = document.querySelectorAll('section');
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.2
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+
+                        // 차트 애니메이션 실행 (data-width 속성을 가진 요소)
+                        const chartFills = entry.target.querySelectorAll('.chart-fill');
+                        chartFills.forEach(fill => {
+                            const width = fill.dataset.width;
+                            if (width) {
+                                fill.style.width = width;
+                            }
+                        });
+
+                        // 원형 진도 표시 애니메이션 실행 (data-progress 속성을 가진 요소)
+                        const progressIndicators = entry.target.querySelectorAll('.progress-indicator');
+                        progressIndicators.forEach(indicator => {
+                            const progress = indicator.dataset.progress;
+                            if (progress) {
+                                indicator.style.background = `conic-gradient(#ffeb3b 0% ${progress}%, rgba(255, 255, 255, 0.3) ${progress}% 100%)`;
+                            }
+                        });
+
+
+                        observer.unobserve(entry.target); // 한 번 애니메이션 후 옵저버 해제
+                    }
+                });
+            }, observerOptions);
+
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+        });
+    </script>
+</body>
+</html>
