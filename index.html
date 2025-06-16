@@ -5,56 +5,50 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>서울특별시교육청 2025 AI·디지털 기반 교육 기본계획: 초등학교 교사를 위한 연수</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fonts-archive/Pretendard/subsets/Pretendard-dynamic-subset.css" type="text/css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         :root {
             /* Academic Navy 테마 */
-            --primary-color: #303f9f;
+            --main-color: #303f9f;
             --background-color: #f5f5f5;
             --text-color: #1a237e;
-            --sidebar-width: 250px;
-            --header-height: 60px;
+            --card-bg-color: #ffffff;
+            --border-color: #e0e0e0;
+            --accent-color: #5c6bc0;
+            --progress-bar-bg: #e8eaf6;
+            --progress-bar-fill: #3f51b5;
         }
 
         body {
             font-family: "Pretendard", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans KR", "Malgun Gothic", sans-serif;
-            line-height: 1.6;
             margin: 0;
             padding: 0;
             background-color: var(--background-color);
             color: var(--text-color);
-            display: flex;
+            line-height: 1.6;
         }
 
         header {
+            background-color: var(--main-color);
+            color: white;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
             position: fixed;
+            width: 100%;
             top: 0;
             left: 0;
-            width: 100%;
-            height: var(--header-height);
-            background-color: var(--primary-color);
-            color: #ffffff;
-            display: flex;
-            align-items: center;
-            padding: 0 20px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
             z-index: 1000;
         }
 
-        header h1 {
-            margin: 0;
-            font-size: 1.5em;
-        }
-
         nav {
+            width: 250px;
+            background-color: var(--card-bg-color);
+            padding-top: 100px; /* Header height + padding */
             position: fixed;
-            top: var(--header-height);
-            left: 0;
-            width: var(--sidebar-width);
-            height: calc(100% - var(--header-height));
-            background-color: #ffffff;
-            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
-            padding: 20px 0;
+            height: 100%;
             overflow-y: auto;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
             z-index: 900;
         }
 
@@ -66,277 +60,156 @@
 
         nav ul li a {
             display: block;
-            padding: 12px 20px;
+            padding: 15px 20px;
             color: var(--text-color);
             text-decoration: none;
-            transition: background-color 0.3s ease, color 0.3s ease;
-            font-weight: 500;
-            border-left: 5px solid transparent;
+            border-bottom: 1px solid var(--border-color);
+            transition: background-color 0.3s ease;
         }
 
         nav ul li a:hover,
         nav ul li a.active {
-            background-color: #e8eaf6;
-            color: var(--primary-color);
-            border-left-color: var(--primary-color);
+            background-color: var(--accent-color);
+            color: white;
         }
 
         main {
-            margin-left: var(--sidebar-width);
-            padding-top: var(--header-height);
-            flex-grow: 1;
-            padding: 20px 40px 40px calc(20px + var(--sidebar-width)); /* Adjust padding for content separation */
+            margin-left: 250px; /* Sidebar width */
+            padding: 100px 40px 40px 40px; /* Header padding-top + general padding */
             box-sizing: border-box;
         }
 
         section {
-            background-color: #ffffff;
-            border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            background-color: var(--card-bg-color);
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
             margin-bottom: 30px;
             padding: 30px;
         }
 
-        h2 {
-            color: var(--primary-color);
-            font-size: 2em;
+        section h2 {
+            color: var(--main-color);
             margin-top: 0;
+            padding-bottom: 15px;
+            border-bottom: 2px solid var(--border-color);
             margin-bottom: 20px;
-            border-bottom: 2px solid #e0e0e0;
-            padding-bottom: 10px;
-        }
-
-        h3 {
-            color: #3f51b5;
-            font-size: 1.4em;
-            margin-top: 25px;
-            margin-bottom: 15px;
-        }
-
-        p {
-            margin-bottom: 15px;
-        }
-
-        ul {
-            list-style: disc;
-            margin-left: 20px;
-            margin-bottom: 15px;
-        }
-
-        ul li {
-            margin-bottom: 8px;
-        }
-
-        strong {
-            color: #d32f2f; /* 중요개념 강조 색상 */
-            font-weight: bold;
         }
 
         .concept-card {
-            background-color: #f8faff;
-            border: 1px solid #c5cae9;
+            background-color: var(--card-bg-color);
+            border: 1px solid var(--border-color);
             border-radius: 8px;
             padding: 20px;
-            margin-top: 20px;
-            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.05);
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.03);
+        }
+
+        .concept-card h3 {
+            color: var(--accent-color);
+            margin-top: 0;
         }
 
         .definition-block {
-            background-color: #e8f5e9;
-            border-left: 5px solid #4caf50;
-            padding: 15px 20px;
-            margin: 20px 0;
-            border-radius: 4px;
+            background-color: var(--progress-bar-bg);
+            border-left: 5px solid var(--accent-color);
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 5px;
         }
 
         .definition-block strong {
-            color: #2e7d32;
+            color: var(--main-color);
         }
 
-        .example-showcase {
-            background-color: #fff3e0;
-            border-left: 5px solid #ff9800;
-            padding: 15px 20px;
-            margin: 20px 0;
-            border-radius: 4px;
+        .example-showcase ul {
+            list-style: disc;
+            padding-left: 20px;
         }
 
-        .example-showcase p {
-            margin: 0;
-            font-style: italic;
-            color: #e65100;
+        .example-showcase li {
+            margin-bottom: 8px;
         }
 
         .progress-indicator {
             width: 100%;
-            height: 25px;
-            background-color: #e0e0e0;
+            background-color: var(--progress-bar-bg);
             border-radius: 5px;
-            overflow: hidden;
             margin-top: 15px;
+            overflow: hidden; /* For border-radius on inner bar */
         }
 
         .progress-bar {
-            height: 100%;
-            background-color: #4caf50;
-            width: 0; /* JS로 동적 조절 */
-            text-align: right;
+            width: 76.9%; /* Example: 76.9% */
+            height: 25px;
+            background-color: var(--progress-bar-fill);
             color: white;
+            text-align: center;
             line-height: 25px;
-            padding-right: 10px;
-            box-sizing: border-box;
-            transition: width 1s ease-out;
-        }
-
-        .data-visualization {
-            background-color: #e3f2fd;
-            border: 1px solid #90caf9;
-            border-radius: 8px;
-            padding: 20px;
-            margin-top: 20px;
-        }
-
-        .data-visualization h4 {
-            color: #1976d2;
-            margin-top: 0;
-            margin-bottom: 15px;
-            text-align: center;
-        }
-
-        .chart-container {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-
-        .chart-item {
-            display: flex;
-            align-items: center;
-            font-size: 0.9em;
-            color: #0d47a1;
-        }
-
-        .chart-label {
-            width: 100px;
-            flex-shrink: 0;
-        }
-
-        .chart-bar-viz {
-            flex-grow: 1;
-            height: 20px;
-            background-color: #bbdefb;
-            border-radius: 3px;
-            overflow: hidden;
-            position: relative;
-        }
-
-        .chart-fill-viz {
-            height: 100%;
-            background-color: #2196f3;
-            width: 0; /* JS로 동적 조절 */
-            transition: width 1.5s ease-out;
-        }
-
-        .chart-value {
-            position: absolute;
-            right: 5px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: white;
             font-weight: bold;
+            border-radius: 5px;
         }
 
+        .data-visualization table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+
+        .data-visualization th,
+        .data-visualization td {
+            border: 1px solid var(--border-color);
+            padding: 10px;
+            text-align: left;
+        }
+
+        .data-visualization th {
+            background-color: var(--progress-bar-bg);
+            color: var(--text-color);
+        }
+        
         .key-insights-box {
-            background-color: #ffedee;
-            border: 1px solid #ef9a9a;
-            border-radius: 8px;
+            background-color: var(--accent-color);
+            color: white;
             padding: 20px;
-            margin-top: 20px;
-            text-align: center;
+            border-radius: 8px;
+            margin-top: 30px;
         }
 
         .key-insights-box h3 {
-            color: #d32f2f;
-            margin-top: 0;
-            font-size: 1.5em;
-        }
-
-        .key-insights-box p {
-            margin-bottom: 0;
-            color: #c62828;
-            font-weight: 500;
-        }
-
-        .quiz-component {
-            background-color: #e0f7fa;
-            border: 1px solid #80deea;
-            border-radius: 8px;
-            padding: 20px;
-            margin-top: 20px;
-        }
-
-        .quiz-component p {
-            font-weight: bold;
-            color: #00838f;
-        }
-
-        .quiz-component button {
-            background-color: #00bcd4;
             color: white;
-            border: none;
-            padding: 10px 15px;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
+            margin-top: 0;
         }
 
-        .quiz-component button:hover {
-            background-color: #0097a7;
+        .key-insights-box ul {
+            list-style: none;
+            padding: 0;
         }
 
-        @media (max-width: 768px) {
-            nav {
-                width: 100%;
-                height: auto;
-                position: static;
-                box-shadow: none;
-            }
+        .key-insights-box li {
+            margin-bottom: 10px;
+            padding-left: 20px;
+            position: relative;
+        }
 
-            header {
-                position: static;
-                height: auto;
-                justify-content: center;
-                padding: 15px;
-            }
-            header h1 {
-                font-size: 1.2em;
-            }
-
-            main {
-                margin-left: 0;
-                padding: 20px;
-                padding-top: 20px; /* Remove header padding when static */
-            }
-
-            nav ul li a {
-                text-align: center;
-                border-left: none;
-                border-bottom: 2px solid transparent;
-            }
-            nav ul li a:hover,
-            nav ul li a.active {
-                border-bottom-color: var(--primary-color);
-                border-left-color: transparent;
-            }
+        .key-insights-box li::before {
+            content: "\f00c"; /* Font Awesome checkmark icon */
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            color: white;
+            position: absolute;
+            left: 0;
+            top: 0;
         }
     </style>
 </head>
 <body>
     <header>
         <h1>서울특별시교육청 2025 AI·디지털 기반 교육 기본계획</h1>
+        <p>초등학교 교사를 위한 연수</p>
     </header>
+
     <nav>
-        <ul id="main-nav">
+        <ul>
             <li><a href="#section1">추진 배경 및 목표</a></li>
             <li><a href="#section2">디지털 격차 해소를 위한 노력</a></li>
             <li><a href="#section3">초등학교 교사에게 요구되는 AI·디지털 역량</a></li>
@@ -346,72 +219,60 @@
             <li><a href="#section7">초등 교사를 위한 기타 지원 프로그램</a></li>
         </ul>
     </nav>
+
     <main>
         <section id="section1">
             <h2>추진 배경 및 목표</h2>
             <div class="concept-card">
-                <h3>미래 사회 교육의 핵심 목표</h3>
-                <p>2025년 서울특별시교육청의 AI·디지털 기반 교육 기본계획은 미래 사회를 살아갈 모든 학생이 <strong>언어, 수리, 디지털 기초소양</strong>을 갖추고 주도적으로 학습을 지속할 수 있는 역량을 함양하도록 지원하는 데 중점을 둡니다. 특히, <strong>인공지능(AI) 등 신기술 발달에 따른 디지털 대전환</strong>에 대응하여 미래세대 AI·정보교육을 강화하고, 급격히 발전하는 디지털 기술을 책임감 있고 건강하게 사용할 수 있는 <strong>AI 윤리·디지털 시민성 교육</strong>의 중요성을 강조합니다.</p>
-                <p>또한, 공교육을 통해 소외되는 학생 없이 <strong>맞춤형 디지털 교육 기회를 제공</strong>하여 디지털 격차를 해소하고, 학생별 다양한 학습 수요에 대응하는 맞춤교육 요구에 부응하는 것을 목표로 합니다. 궁극적인 비전은 <strong>AI·디지털 기반 교육혁신으로 모두가 빛나는 학교를 만드는 것</strong>입니다. 이를 위해 주도적인 학생, 도전하는 교사, 디지털 기술의 교육적 통합을 목표로 설정하였습니다.</p>
+                <h3>미래 사회 역량 함양</h3>
+                <p>2025년 서울특별시교육청의 AI·디지털 기반 교육 기본계획은 미래 사회를 살아갈 모든 학생이 언어, 수리, 디지털 기초소양을 갖추고 주도적으로 학습을 지속할 수 있는 역량을 함양하도록 지원하는 데 중점을 둡니다. 특히, 인공지능(AI) 등 신기술 발달에 따른 디지털 대전환에 대응하여 미래세대 AI·정보교육을 강화하고, 급격히 발전하는 디지털 기술을 책임감 있고 건강하게 사용할 수 있는 AI 윤리·디지털 시민성 교육의 중요성을 강조합니다.</p>
+            </div>
+            <div class="concept-card">
+                <h3>맞춤형 교육 및 비전</h3>
+                <p>또한, 공교육을 통해 소외되는 학생 없이 맞춤형 디지털 교육 기회를 제공하여 디지털 격차를 해소하고, 학생별 다양한 학습 수요에 대응하는 맞춤교육 요구에 부응하는 것을 목표로 합니다. 궁극적인 비전은 AI·디지털 기반 교육혁신으로 모두가 빛나는 학교를 만드는 것입니다. 이를 위해 주도적인 학생, 도전하는 교사, 디지털 기술의 교육적 통합을 목표로 설정하였습니다.</p>
             </div>
         </section>
 
         <section id="section2">
             <h2>디지털 격차 해소를 위한 노력</h2>
             <div class="concept-card">
-                <h3>디지털 격차 실태 및 교육적 함의</h3>
-                <p>디지털 교육 격차 해소는 이번 계획의 <strong>중요한 축</strong>입니다. 2023년 디지털정보격차 실태조사에 따르면, 장애인, 저소득층, 농어민, 고령층 등 4대 정보취약 계층의 디지털정보화 수준은 76.9%로 전년 대비 0.7%p 상승했습니다. 이 조사에서 <strong>고령층의 디지털정보화 수준이 70.7%로 가장 낮게</strong> 나타났으며, 저소득층은 96.1%로 가장 높았습니다.</p>
-                <p>코로나19 팬데믹으로 인한 원격수업의 확대는 학생 간 교육격차를 심화시켰다는 인식이 높았으며, 특히 <strong>학생의 자기주도 학습능력 차이</strong>가 학습격차 심화의 주요 원인으로 지적되었습니다. 이에 따라 디지털 기술을 활용한 <strong>개별화 교육 및 온·오프라인 연계 수업의 필요성</strong>이 강조되고 있습니다.</p>
-            </div>
-            <div class="data-visualization">
-                <h4>2023년 디지털정보화 수준 (일부 계층)</h4>
-                <div class="chart-container">
-                    <div class="chart-item">
-                        <span class="chart-label">저소득층</span>
-                        <div class="chart-bar-viz">
-                            <div class="chart-fill-viz" data-width="96.1%"></div>
-                            <span class="chart-value">96.1%</span>
-                        </div>
-                    </div>
-                    <div class="chart-item">
-                        <span class="chart-label">평균(취약계층)</span>
-                        <div class="chart-bar-viz">
-                            <div class="chart-fill-viz" data-width="76.9%"></div>
-                            <span class="chart-value">76.9%</span>
-                        </div>
-                    </div>
-                    <div class="chart-item">
-                        <span class="chart-label">고령층</span>
-                        <div class="chart-bar-viz">
-                            <div class="chart-fill-viz" data-width="70.7%"></div>
-                            <span class="chart-value">70.7%</span>
-                        </div>
-                    </div>
+                <h3>실태 조사 및 교육 격차 문제</h3>
+                <p>디지털 교육 격차 해소는 이번 계획의 중요한 축입니다. 2023년 디지털정보격차 실태조사에 따르면, 장애인, 저소득층, 농어민, 고령층 등 4대 정보취약 계층의 디지털정보화 수준은 76.9%로 전년 대비 0.7%p 상승했습니다. 이 조사에서 고령층의 디지털정보화 수준이 70.7%로 가장 낮게 나타났으며, 저소득층은 96.1%로 가장 높았습니다.</p>
+                <div class="progress-indicator">
+                    <div class="progress-bar" style="width: 76.9%;">디지털정보화 수준: 76.9%</div>
                 </div>
             </div>
             <div class="concept-card">
-                <h3>주요 지원 방안</h3>
-                <ul>
-                    <li>서울특별시교육청은 <strong>공교육 내에서 보편적 디지털 소양 교육을 강화</strong>하고, 맞춤형 디지털 교육 기회를 제공하여 디지털 격차를 해소하고자 합니다.</li>
-                    <li><strong>1학생 1스마트기기 '디벗' 보급</strong>과 <strong>디지털 튜터 운영</strong>을 통해 학생의 능동적인 학습 참여를 촉진하고 교원의 업무 부담을 경감합니다.</li>
-                    <li>한국교직원공제회는 저소득층 학생들을 위해 디지털 학습기기 지원 사업(약 5억원 규모)을 진행하여 교육 격차 해소에 기여한 바 있습니다.</li>
-                    <li>충청북도교육청은 자체 플랫폼 <strong>‘다채움’</strong>과 <strong>AI 디지털교과서</strong>를 통해 디지털 교육 격차를 해소하고 모든 학생의 성장을 지원하고 있으며, 특히 초등학생의 디지털 소양 함양을 위해 <strong>전국 최초로 초등학교 정보교과 AI 디지털교과서 5종을 개발하여 보급</strong>했습니다.</li>
-                </ul>
+                <h3>코로나19와 학습 격차</h3>
+                <p>코로나19 팬데믹으로 인한 원격수업의 확대는 학생 간 교육격차를 심화시켰다는 인식이 높았으며, 특히 학생의 자기주도 학습능력 차이가 학습격차 심화의 주요 원인으로 지적되었습니다. 이에 따라 디지털 기술을 활용한 개별화 교육 및 온·오프라인 연계 수업의 필요성이 강조되고 있습니다.</p>
+            </div>
+            <div class="concept-card">
+                <h3>지원 방안</h3>
+                <p>서울특별시교육청은 공교육 내에서 보편적 디지털 소양 교육을 강화하고, 맞춤형 디지털 교육 기회를 제공하여 디지털 격차를 해소하고자 합니다. 1학생 1스마트기기 '디벗' 보급과 디지털 튜터 운영을 통해 학생의 능동적인 학습 참여를 촉진하고 교원의 업무 부담을 경감합니다.</p>
+                <div class="example-showcase">
+                    <h3>주요 지원 사례</h3>
+                    <ul>
+                        <li>한국교직원공제회는 저소득층 학생들을 위해 디지털 학습기기 지원 사업(약 5억원 규모)을 진행하여 교육 격차 해소에 기여한 바 있습니다.</li>
+                        <li>충청북도교육청은 자체 플랫폼 <strong>다채움</strong>과 AI 디지털교과서를 통해 디지털 교육 격차를 해소하고 모든 학생의 성장을 지원하고 있으며, 특히 초등학생의 디지털 소양 함양을 위해 전국 최초로 초등학교 정보교과 AI 디지털교과서 5종을 개발하여 보급했습니다.</li>
+                    </ul>
+                </div>
             </div>
         </section>
 
         <section id="section3">
             <h2>초등학교 교사에게 요구되는 AI·디지털 역량</h2>
             <div class="concept-card">
-                <h3>2022 개정 교육과정과 교사상</h3>
-                <p>2022 개정 교육과정은 교과 교육에서 깊이 있는 학습을 통해 역량을 함양하고, 언어·수리·디지털 기초소양을 모든 교과를 통해 함양하도록 수업 설계를 강조합니다. 이에 따라 다음과 같은 <strong>AI·디지털 기반 교육혁신 교사상</strong>이 요구됩니다:</p>
-                <ul>
-                    <li><strong>데이터 기반</strong>으로 수업과 평가를 하고 데이터를 맞춤형 학습에 활용하는 교사</li>
-                    <li>디지털 기술을 활용하여 <strong>학생 성장 중심 평가</strong>에 기반한 수업을 설계하는 교사</li>
-                    <li>학생의 삶과 연계하여 교육과정을 재구성하는 교사</li>
-                    <li>디지털 도구를 <strong>성취 수준 달성을 위해 교육적으로 활용</strong>하는 교사</li>
-                    <li>기술이 빠르게 변화하는 시대에 <strong>학생과 함께 늘 배우고 도전하는 학습자로서의 교사</strong></li>
-                </ul>
+                <h3>2022 개정 교육과정의 요구</h3>
+                <p>2022 개정 교육과정은 교과 교육에서 깊이 있는 학습을 통해 역량을 함양하고, 언어·수리·디지털 기초소양을 모든 교과를 통해 함양하도록 수업 설계를 강조합니다. 이에 따라 다음과 같은 AI·디지털 기반 교육혁신 교사상이 요구됩니다:</p>
+                <div class="example-showcase">
+                    <ul>
+                        <li>데이터 기반으로 수업과 평가를 하고 데이터를 맞춤형 학습에 활용하는 교사</li>
+                        <li>디지털 기술을 활용하여 학생 성장 중심 평가에 기반한 수업을 설계하는 교사</li>
+                        <li>학생의 삶과 연계하여 교육과정을 재구성하는 교사</li>
+                        <li>디지털 도구를 성취 수준 달성을 위해 교육적으로 활용하는 교사</li>
+                        <li>기술이 빠르게 변화하는 시대에 학생과 함께 늘 배우고 도전하는 학습자로서의 교사</li>
+                    </ul>
+                </div>
             </div>
         </section>
 
@@ -419,22 +280,24 @@
             <h2>2025년 초등 교원 대상 주요 연수 프로그램</h2>
             <div class="concept-card">
                 <h3>AI·디지털 교수학습 역량강화 연수</h3>
-                <ul>
-                    <li><strong>목표:</strong> AI·디지털 기반 교수학습을 통해 학생들의 잠재력을 끌어내고, 끊임없이 학습하고 도전하는 교원을 양성하며, 자발적·협력적으로 연구하고 공유하는 학교 문화 조성</li>
-                    <li><strong>연수 수준:</strong> AI·디지털 기초 소양 습득을 위한 <strong>기본(탐색) 단계</strong>부터, 학생 참여 수업 재구성을 위한 <strong>활용(실천)</strong>, 맞춤형 수업 및 자기 성찰을 위한 <strong>심화(평가·성찰)</strong>, 그리고 동료 멘토링이 가능한 <strong>전문가(멘토링) 단계까지 300여 개 과정</strong>이 개설됩니다.</li>
-                    <li><strong>연수 방법:</strong> 대면, 원격, 혼합, <strong>학교로 찾아가는 연수</strong> 등 다양한 방식으로 제공됩니다. 교육지원청 주관의 '학교로 찾아가는 연수'는 실물 AIDT 활용, AI·디지털 역량강화 에듀테크 활용, AI·디지털 기반 수업평가 활성화를 주제로 학교별 연 1회 이상 신청할 수 있습니다.</li>
-                </ul>
+                <p>서울특별시교육청은 초등학교 교사들의 AI·디지털 역량을 강화하기 위한 다양한 연수 프로그램을 운영합니다.</p>
+                <div class="definition-block">
+                    <strong>목표:</strong> AI·디지털 기반 교수학습을 통해 학생들의 잠재력을 끌어내고, 끊임없이 학습하고 도전하는 교원을 양성하며, 자발적·협력적으로 연구하고 공유하는 학교 문화 조성
+                </div>
+                <div class="example-showcase">
+                    <h3>연수 수준 및 방법</h3>
+                    <ul>
+                        <li><strong>연수 수준:</strong> AI·디지털 기초 소양 습득을 위한 기본(탐색) 단계부터, 학생 참여 수업 재구성을 위한 활용(실천), 맞춤형 수업 및 자기 성찰을 위한 심화(평가·성찰), 그리고 동료 멘토링이 가능한 전문가(멘토링) 단계까지 300여 개 과정이 개설됩니다.</li>
+                        <li><strong>연수 방법:</strong> 대면, 원격, 혼합, 학교로 찾아가는 연수 등 다양한 방식으로 제공됩니다. 교육지원청 주관의 '학교로 찾아가는 연수'는 실물 AIDT 활용, AI·디지털 역량강화 에듀테크 활용, AI·디지털 기반 수업평가 활성화를 주제로 학교별 연 1회 이상 신청할 수 있습니다.</li>
+                    </ul>
+                </div>
             </div>
             <div class="concept-card">
                 <h3>AI 윤리·디지털 시민성 교육 교원 연수</h3>
-                <ul>
-                    <li><strong>목표:</strong> 인공지능 기술이 개인과 사회에 미치는 변화와 영향을 이해하고 대비할 수 있도록 교원의 AI 윤리교육 역량을 강화하며, 디지털 시민 교육을 활성화합니다.</li>
-                    <li><strong>내용:</strong> 초·중·고 학교급별 디지털 시민성 교육자료 활용 연수, 전문기관 연계 전문가 연수, 그리고 <strong>초·중·고 인공지능 윤리 원격직무연수를 상시 운영</strong>합니다.</li>
-                </ul>
-            </div>
-            <div class="key-insights-box">
-                <h3>핵심 연수 목표</h3>
-                <p>교사의 AI·디지털 교수학습 역량 강화와 AI 윤리·디지털 시민성 교육을 통한 미래 교육 준비.</p>
+                <div class="definition-block">
+                    <strong>목표:</strong> 인공지능 기술이 개인과 사회에 미치는 변화와 영향을 이해하고 대비할 수 있도록 교원의 AI 윤리교육 역량을 강화하며, 디지털 시민 교육을 활성화합니다.
+                </div>
+                <p>내용: 초·중·고 학교급별 디지털 시민성 교육자료 활용 연수, 전문기관 연계 전문가 연수, 그리고 초·중·고 인공지능 윤리 원격직무연수를 상시 운영합니다.</p>
             </div>
         </section>
 
@@ -442,24 +305,22 @@
             <h2>AIDT 및 디지털교과서 활용 역량 강화</h2>
             <div class="concept-card">
                 <h3>AIDT 활용 지원 (2022 개정 교육과정 기반)</h3>
-                <ul>
-                    <li><strong>초등학교 적용 학년 및 교과:</strong> 초등학교 <strong>3~4학년 수학, 영어, 정보 교과</strong>에 AIDT가 활용될 예정입니다.</li>
-                    <li><strong>주요 기능:</strong> AI를 통해 <strong>학생별 학습 수준과 속도를 진단·분석하고 맞춤형 학습</strong>을 제공합니다.</li>
-                    <li><strong>교원 역량 강화:</strong> AIDT 활용 수업 설계, 실행, 성찰 등 수업 적용 중심의 연수를 운영하여 교원의 성장을 지원합니다.</li>
-                    <li><strong>지원 자료 개발:</strong> AIDT가 학생 맞춤형 학습 및 개념 기반 탐구학습을 위한 수업 지원 도구로 활용될 수 있도록 수업 설계 방안 등 지원자료를 개발합니다.</li>
-                </ul>
+                <div class="example-showcase">
+                    <ul>
+                        <li><strong>초등학교 적용 학년 및 교과:</strong> 초등학교 3~4학년 수학, 영어, 정보 교과에 AIDT가 활용될 예정입니다.</li>
+                        <li><strong>주요 기능:</strong> AI를 통해 학생별 학습 수준과 속도를 진단·분석하고 맞춤형 학습을 제공합니다.</li>
+                        <li><strong>교원 역량 강화:</strong> AIDT 활용 수업 설계, 실행, 성찰 등 수업 적용 중심의 연수를 운영하여 교원의 성장을 지원합니다.</li>
+                        <li><strong>지원 자료 개발:</strong> AIDT가 학생 맞춤형 학습 및 개념 기반 탐구학습을 위한 수업 지원 도구로 활용될 수 있도록 수업 설계 방안 등 지원자료를 개발합니다.</li>
+                    </ul>
+                </div>
             </div>
             <div class="concept-card">
                 <h3>디지털교과서 활용 지원 (2015 개정 교육과정 기반)</h3>
-                <ul>
-                    <li><strong>초등학교 적용 학년 및 교과:</strong> 초등학교 <strong>5~6학년 사회, 과학, 영어 교과</strong>에 디지털교과서가 활용됩니다.</li>
-                </ul>
+                <p>초등학교 5~6학년 사회, 과학, 영어 교과에 디지털교과서가 활용됩니다.</p>
             </div>
             <div class="concept-card">
                 <h3>웹 실감형 콘텐츠 활용 지원</h3>
-                <ul>
-                    <li><strong>초등학교 적용 학년 및 교과:</strong> 초등학교 <strong>3~6학년 사회, 과학, 영어, 수학, 정보 교과</strong>에 웹 실감형 콘텐츠가 활용 가능합니다.</li>
-                </ul>
+                <p>초등학교 3~6학년 사회, 과학, 영어, 수학, 정보 교과에 웹 실감형 콘텐츠가 활용 가능합니다.</p>
             </div>
         </section>
 
@@ -467,102 +328,108 @@
             <h2>디지털 기반 협력적 교육환경 조성</h2>
             <div class="concept-card">
                 <h3>1학생 1스마트기기 '디벗' 보급 및 활용 지원</h3>
-                <ul>
-                    <li><strong>2025학년도 초등학교 보급:</strong> 2025학년도 1학기 초에 <strong>초등학교 3·4학년에 디벗이 보급될 예정</strong>입니다.</li>
-                    <li><strong>운영 방침:</strong> 디벗은 학교 소유 기기로, 학급별 충전(보관)함이 보급 완료되어 학교에 두고 사용함을 기본으로 합니다 (가정 사용은 학교 공동체 의견 반영).</li>
-                    <li><strong>안전한 사용 지원:</strong> <strong>MDM(모바일 단말기 원격 통제 시스템)</strong> 및 수업 관리 소프트웨어(SW)를 통해 안전하고 교육 목적으로만 기기를 활용할 수 있도록 지원합니다.</li>
-                    <li><strong>교원 연수:</strong> 디벗 강사요원 연수, 핵심교원(기기관리, 교사연수 담당 부장) 연수, MDM 업무 담당자 연수, AI·디지털 역량 강화 에듀테크 활용 연수 등 다양한 지원이 제공됩니다.</li>
-                </ul>
+                <div class="example-showcase">
+                    <ul>
+                        <li><strong>2025학년도 초등학교 보급:</strong> 2025학년도 1학기 초에 초등학교 3·4학년에 디벗이 보급될 예정입니다.</li>
+                        <li><strong>운영 방침:</strong> 디벗은 학교 소유 기기로, 학급별 충전(보관)함이 보급 완료되어 학교에 두고 사용함을 기본으로 합니다 (가정 사용은 학교 공동체 의견 반영).</li>
+                        <li><strong>안전한 사용 지원:</strong> MDM(모바일 단말기 원격 통제 시스템) 및 수업 관리 소프트웨어(SW)를 통해 안전하고 교육 목적으로만 기기를 활용할 수 있도록 지원합니다.</li>
+                        <li><strong>교원 연수:</strong> 디벗 강사요원 연수, 핵심교원(기기관리, 교사연수 담당 부장) 연수, MDM 업무 담당자 연수, AI·디지털 역량 강화 에듀테크 활용 연수 등 다양한 지원이 제공됩니다.</li>
+                    </ul>
+                </div>
             </div>
             <div class="concept-card">
                 <h3>디지털 튜터 운영</h3>
-                <p>학교 내 디지털 기술 활용 교육을 지원하고, 디벗 관리 업무(기기, 계정, MDM 관리 등)를 지원하여 <strong>교원의 업무 부담을 경감</strong>합니다.</p>
+                <p>학교 내 디지털 기술 활용 교육을 지원하고, 디벗 관리 업무(기기, 계정, MDM 관리 등)를 지원하여 교원의 업무 부담을 경감합니다.</p>
             </div>
             <div class="concept-card">
                 <h3>네트워크 안정화</h3>
-                <p>학교 유·무선 네트워크 진단 및 개선을 통해 AI 미래교육 체제를 지원하는 <strong>최적화된 디지털 환경을 조성</strong>합니다.</p>
+                <p>학교 유·무선 네트워크 진단 및 개선을 통해 AI 미래교육 체제를 지원하는 최적화된 디지털 환경을 조성합니다.</p>
             </div>
         </section>
 
         <section id="section7">
             <h2>초등 교사를 위한 기타 지원 프로그램</h2>
             <div class="concept-card">
-                <h3>다양한 학습 지원 및 연구 활성화</h3>
+                <h3>디지털 새싹 운영 지원</h3>
+                <p>대학, 기업, 공공기관 등 우수한 운영기관과 연계하여 초·중·고등학생에게 다양한 최신 SW·AI 교육 프로그램 체험 기회를 제공합니다.</p>
+            </div>
+            <div class="concept-card">
+                <h3>디지털 문제해결 센터 운영</h3>
+                <p>체험 중심 소프트웨어 교육 연계 프로그램 운영, 스마트 기기 및 AI·SW 교육 교구 대여, 교원 정보화 연수 운영 등을 지원합니다.</p>
+            </div>
+            <div class="concept-card">
+                <h3>AI·정보교육 연구회 운영</h3>
+                <p>AI·SW 교육 담당 교사들의 역량 강화를 위한 공동 연구 및 실천을 지원하고, AI·정보교육 프로그램 개발 및 수업 자료 공유를 촉진합니다.</p>
+            </div>
+            <div class="concept-card">
+                <h3>AI·디지털 기반 교수학습·평가 우수모델 발굴 및 확산</h3>
+                <p>학습자 중심의 교수학습 활동을 위한 디지털 도구 활용 우수 사례를 발굴하고 공유합니다.</p>
+            </div>
+            <div class="concept-card">
+                <h3>AI·디지털 기반 수업 동영상 및 사례집 개발</h3>
+                <p>AI·에듀테크 활용 수업 모델을 적용한 수업 영상 및 사례집을 제작하여 현장 중심의 실질적 교수·학습 혁신을 지원합니다.</p>
+            </div>
+            <div class="concept-card">
+                <h3>서울 에듀테크 소프트랩 운영</h3>
+                <p>현장 교사들이 교육용으로 개발된 에듀테크가 학교 현장에 적합한지 체험하고 연구 후 피드백하며, 공교육에 적합한 에듀테크 생태계를 조성합니다.</p>
+            </div>
+            <div class="key-insights-box">
+                <h3>핵심 요약</h3>
                 <ul>
-                    <li><strong>디지털 새싹 운영 지원:</strong> 대학, 기업, 공공기관 등 우수한 운영기관과 연계하여 초·중·고등학생에게 다양한 최신 SW·AI 교육 프로그램 체험 기회를 제공합니다.</li>
-                    <li><strong>디지털 문제해결 센터 운영:</strong> 체험 중심 소프트웨어 교육 연계 프로그램 운영, 스마트 기기 및 AI·SW 교육 교구 대여, 교원 정보화 연수 운영 등을 지원합니다.</li>
-                    <li><strong>AI·정보교육 연구회 운영:</strong> AI·SW 교육 담당 교사들의 역량 강화를 위한 공동 연구 및 실천을 지원하고, AI·정보교육 프로그램 개발 및 수업 자료 공유를 촉진합니다.</li>
-                    <li><strong>AI·디지털 기반 교수학습·평가 우수모델 발굴 및 확산:</strong> 학습자 중심의 교수학습 활동을 위한 디지털 도구 활용 우수 사례를 발굴하고 공유합니다.</li>
-                    <li><strong>AI·디지털 기반 수업 동영상 및 사례집 개발:</strong> AI·에듀테크 활용 수업 모델을 적용한 수업 영상 및 사례집을 제작하여 현장 중심의 실질적 교수·학습 혁신을 지원합니다.</li>
-                    <li><strong>서울 에듀테크 소프트랩 운영:</strong> 현장 교사들이 교육용으로 개발된 에듀테크가 학교 현장에 적합한지 체험하고 연구 후 피드백하며, 공교육에 적합한 에듀테크 생태계를 조성합니다.</li>
+                    <li>2025년 서울시 교육청은 모든 학생의 **AI·디지털 기초소양** 함양과 **디지털 격차 해소**를 목표로 합니다.</li>
+                    <li>교사는 **데이터 기반 수업 설계** 및 **디지털 도구 활용** 역량이 요구되며, 이를 위한 **다양한 연수 프로그램**이 운영됩니다.</li>
+                    <li>**디벗 보급**, **AIDT 활용 지원**, **디지털 튜터 운영** 등을 통해 디지털 교육 환경을 조성합니다.</li>
                 </ul>
             </div>
         </section>
     </main>
 
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const navLinks = document.querySelectorAll('#main-nav a');
-            const sections = document.querySelectorAll('section');
+        document.addEventListener('DOMContentLoaded', function() {
+            const navLinks = document.querySelectorAll('nav ul li a');
+            const sections = document.querySelectorAll('main section');
 
-            const options = {
-                root: null,
-                rootMargin: '0px',
-                threshold: 0.3 // 섹션의 30%가 보일 때 활성화
-            };
-
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        const id = entry.target.id;
-                        navLinks.forEach(link => {
-                            link.classList.remove('active');
-                            if (link.getAttribute('href') === `#${id}`) {
-                                link.classList.add('active');
-                            }
-                        });
-
-                        // DataVisualization 애니메이션 (data-width 속성을 가진 요소)
-                        const chartFills = entry.target.querySelectorAll('.chart-fill-viz');
-                        chartFills.forEach(fill => {
-                            const width = fill.dataset.width;
-                            if (width) {
-                                fill.style.width = width;
-                            }
-                        });
+            // Set active class for navigation on scroll
+            function onScroll() {
+                let currentActive = '';
+                sections.forEach(section => {
+                    // Adjusted offset to account for fixed header and padding in main
+                    const sectionTop = section.offsetTop - (document.querySelector('header').offsetHeight + parseInt(window.getComputedStyle(document.querySelector('main')).paddingTop));
+                    const sectionHeight = section.clientHeight;
+                    
+                    if (pageYOffset >= sectionTop && pageYOffset < sectionTop + sectionHeight) {
+                        currentActive = section.getAttribute('id');
                     }
                 });
-            }, options);
 
-            sections.forEach(section => {
-                observer.observe(section);
-            });
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href').includes(currentActive)) {
+                        link.classList.add('active');
+                    }
+                });
+            }
 
-            // 네비게이션 클릭 시 부드러운 스크롤
+            window.addEventListener('scroll', onScroll);
+            onScroll(); // Initial call to set active link on load
+
+            // Smooth scroll for navigation links
             navLinks.forEach(link => {
                 link.addEventListener('click', function(e) {
                     e.preventDefault();
-                    const targetId = this.getAttribute('href');
-                    const targetSection = document.querySelector(targetId);
+                    const targetId = this.getAttribute('href').substring(1);
+                    const targetSection = document.getElementById(targetId);
                     if (targetSection) {
+                        // Adjusted scroll position to account for fixed header
                         window.scrollTo({
-                            top: targetSection.offsetTop - (parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--header-height')) || 60), // 헤더 높이만큼 보정
+                            top: targetSection.offsetTop - (document.querySelector('header').offsetHeight + 20), // 20px extra padding for better visual
                             behavior: 'smooth'
                         });
                     }
                 });
             });
-
-            // 초기 로드 시 첫 섹션 활성화
-            if (sections.length > 0) {
-                const firstSectionId = sections[0].id;
-                navLinks.forEach(link => {
-                    if (link.getAttribute('href') === `#${firstSectionId}`) {
-                        link.classList.add('active');
-                    }
-                });
-            }
         });
     </script>
 </body>
 </html>
+아래 코드를 복사하여 .html 파일로 저장하고 웹 브라우저에서 열어 학습자료로 활용해보세요.
